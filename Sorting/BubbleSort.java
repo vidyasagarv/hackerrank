@@ -12,14 +12,8 @@ public class BubbleSort {
         a[j] = temp;
     }
 
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        int n = in.nextInt();
-        int a[] = new int[n];
-        for(int a_i=0; a_i < n; a_i++){
-            a[a_i] = in.nextInt();
-        }
-        int numSwaps = 0;
+    public static int bubbleSort(int[] a){
+        int numSwaps = 0, n = a.length;
         for (int i = 0; i < n; i++) {
             // Track number of elements swapped during a single array traversal
             int numberOfSwaps = 0;
@@ -29,15 +23,25 @@ public class BubbleSort {
                 if (a[j] > a[j + 1]) {
                     swap(a, j, j + 1);
                     numberOfSwaps++;
-                    numSwaps++;
                 }
             }
-
+            numSwaps += numberOfSwaps;
             // If no elements were swapped during a traversal, array is sorted
             if (numberOfSwaps == 0) {
                 break;
             }
         }
+        return numSwaps;
+    }
+    
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+        int a[] = new int[n];
+        for(int a_i=0; a_i < n; a_i++){
+            a[a_i] = in.nextInt();
+        }
+        int numSwaps = bubbleSort(a);
         System.out.println("Array is sorted in "+ numSwaps +" swaps.");
         System.out.println("First Element: " + a[0]);
         System.out.println("Last Element: " + a[a.length-1]);
