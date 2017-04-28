@@ -5,54 +5,49 @@ import java.math.*;
 import java.util.regex.*;
 
 public class MeanMedianMode {
-
-    public static void main(String[] args) {
-        Scanner scan = new Scanner(System.in);
-        int n = scan.nextInt();
-        int[] array = new int[n];
-        int sum = 0;
-        
-        //input values
-        for (int i = 0; i < n; i++) {
-            array[i] = scan.nextInt();
+    
+    public static String mean(int[] array){
+        float sum = 0;
+        for(int i = 0; i < array.length; ++i){
             sum += array[i];
         }
-
-        //sort array
+        return String.format("%.1f", sum/array.length);
+    }
+    
+    public static String median(int[] array){
         Arrays.sort(array);
-
-        //mean
-        float mean = 0;
-        for (int i = 0; i < n; i++) {
-            mean += array[i];
+        int middle = array.length/2;
+        if(array.length/2 == 1){
+            return String.format("%.1f", array[middle]);
+        } else{
+            return String.format("%.1f", (array[middle - 1] + array[middle])/2.0);
         }
-        mean /= n;
-
-        //median
-        float median;
-        int half = (n - 1) / 2;
-        if ((n - 1) % 2 == 0) {
-            median = array[half];
-        } else {
-            median = (float) (array[half] + array[half + 1]) / 2;
-        }
-
-        //mode
-        int mode = 0, repeat = 0;
-        for (int i = 0; i < (n - 1); i++) {
-            if (array[i] == array[i + 1]) {
-                repeat += 1;
-                if(mode < repeat)
-                    mode = i;
-            } else {
-                repeat = 0;
+    }
+    
+    public static int mode(int[] array){
+        int mode = 0, maxCount = 0;
+        for (int i = 0; i < array.length; ++i) {
+            int count = 0;
+            for (int j = 0; j < array.length; ++j) {
+                if (array[j] == array[i]) ++count;
+            }
+            if (count > maxCount) {
+                maxCount = count;
+                mode = array[i];
             }
         }
+        return mode;
+    }
 
-
-        //print mean, median, mode
-        System.out.println(mean);
-        System.out.println(median);
-        System.out.println(array[mode]);
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int N = sc.nextInt();
+        int arr[] = new int[N];
+        for(int i = 0; i < N; ++i){
+            arr[i] = sc.nextInt();
+        }
+        System.out.println(mean(arr));
+        System.out.println(median(arr));
+        System.out.println(mode(arr));
     }
 }
