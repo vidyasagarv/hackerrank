@@ -4,7 +4,7 @@ import java.util.Arrays;
 public class Quartiles {
     
     public static void main(String[] args) {
-        int [] array = getValues();
+        int[] array = getInput();
         Arrays.sort(array);
         
         int q1 = findMedian(array, 0, array.length / 2 - 1);
@@ -26,7 +26,7 @@ public class Quartiles {
         }
     }
     
-    private static int [] getValues() {
+    private static int [] getInput() {
         Scanner scan = new Scanner(System.in);
         int n = scan.nextInt();
         int [] array = new int[n];
