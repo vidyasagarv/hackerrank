@@ -17,7 +17,7 @@ public class MeanMedianMode {
     public static String median(int[] array){
         Arrays.sort(array);
         int middle = array.length/2;
-        if(array.length/2 == 1){
+        if(array.length%2 == 1){
             return String.format("%.1f", array[middle]);
         } else{
             return String.format("%.1f", (array[middle - 1] + array[middle])/2.0);
